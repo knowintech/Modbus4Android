@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion 26
+        targetSdkVersion 29
         versionCode 3
         versionName "1.2"
 
@@ -46,12 +46,14 @@ makeJar.dependsOn(build)
 // gradlew makeJar
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/commons-lang3-3.1.jar')
+    implementation files('libs/commons-logging-1.2.jar')
+//    implementation 'com.android.support:appcompat-v7:25.2.0'
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    testCompile 'junit:junit:4.12'
-    compile files('libs/commons-lang3-3.1.jar')
-    compile files('libs/commons-logging-1.2.jar')
+
+    testImplementation 'junit:junit:4.12'
 }

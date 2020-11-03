@@ -1,1 +1,3 @@
-include ':app', ':modbus4android'
+rootProject.name='Modbus4Android'
+include ':app'
+include ':modbus4android'

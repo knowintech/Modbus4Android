@@ -5,25 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.zgkxzx.modbus4And.requset.ModbusParam;
 import com.zgkxzx.modbus4And.requset.ModbusReq;
 import com.zgkxzx.modbus4And.requset.OnRequestBack;
 
 import java.util.Arrays;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         modbusInit();
-
-
     }
 
     private void modbusInit() {
@@ -46,12 +44,9 @@ public class MainActivity extends Activity {
                 Log.d(TAG, "onFailed " + msg);
             }
         });
-
-
     }
 
     public void readCoilClickEvent(View view) {
-
         ModbusReq.getInstance().readCoil(new OnRequestBack<boolean[]>() {
             @Override
             public void onSuccess(boolean[] booleen) {
@@ -63,12 +58,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "readCoil onFailed " + msg);
             }
         }, 1, 1, 2);
-
-
     }
 
     public void readDiscreteInputClickEvent(View view) {
-
         ModbusReq.getInstance().readDiscreteInput(new OnRequestBack<boolean[]>() {
             @Override
             public void onSuccess(boolean[] booleen) {
@@ -80,12 +72,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "readDiscreteInput onFailed " + msg);
             }
         }, 1, 1, 5);
-
-
     }
 
     public void readHoldingRegistersClickEvent(View view) {
-
         //readHoldingRegisters
         ModbusReq.getInstance().readHoldingRegisters(new OnRequestBack<short[]>() {
             @Override
@@ -98,13 +87,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "readHoldingRegisters onFailed " + msg);
             }
         }, 1, 2, 8);
-
-
     }
 
     public void readInputRegistersClickEvent(View view) {
-
-
         ModbusReq.getInstance().readInputRegisters(new OnRequestBack<short[]>() {
             @Override
             public void onSuccess(short[] data) {
@@ -116,13 +101,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "readInputRegisters onFailed " + msg);
             }
         }, 1, 2, 8);
-
-
     }
 
     public void writeCoilClickEvent(View view) {
-
-
         ModbusReq.getInstance().writeCoil(new OnRequestBack<String>() {
             @Override
             public void onSuccess(String s) {
@@ -134,12 +115,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "writeCoil onFailed " + msg);
             }
         }, 1, 1, true);
-
-
     }
 
     public void writeRegisterClickEvent(View view) {
-
         ModbusReq.getInstance().writeRegister(new OnRequestBack<String>() {
             @Override
             public void onSuccess(String s) {
@@ -151,12 +129,9 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "writeRegister onFailed " + msg);
             }
         }, 1, 1, 234);
-
-
     }
 
     public void writeRegistersClickEvent(View view) {
-
         ModbusReq.getInstance().writeRegisters(new OnRequestBack<String>() {
             @Override
             public void onSuccess(String s) {
@@ -168,9 +143,5 @@ public class MainActivity extends Activity {
                 Log.e(TAG, "writeRegisters onFailed " + msg);
             }
         }, 1, 2, new short[]{211, 52, 34});
-
-
     }
-
-
 }
